@@ -5,16 +5,6 @@
         "Get Input": {
             "Type": "Task",
             "Resource": "${MakeInputFunctionArn}",
-            "Retry": [
-                {
-                    "ErrorEquals": [
-                        "States.TaskFailed"
-                    ],
-                    "IntervalSeconds": 15,
-                    "MaxAttempts": 5,
-                    "BackoffRate": 1.5
-                }
-            ],
             "Next": "Run N-Queens"
         },
         "Run N-Queens": {

@@ -35,6 +35,9 @@ Resources:
       Environment:
         Variables:
           S3_OUTPUT_BUCKET: !Ref InputBucket
+      Policies:
+        - S3CrudPolicy:
+            BucketName: !Ref InputBucket
 
   RunNQueensFunction:
     Type: AWS::Serverless::Function
@@ -42,6 +45,9 @@ Resources:
       CodeUri: functions/nqueens/
       Handler: nqueens
       Runtime: go1.x
+      Policies:
+        - S3CrudPolicy:
+            BucketName: !Ref InputBucket
   
   InputBucket:
     Type: AWS::S3::Bucket
