@@ -1,10 +1,10 @@
 package main
 
 import (
-	"github.com/nextmv-io/hop/run/lambda"
+	"github.com/nextmv-io/hop/run/lambda/s3"
 	"stub.local/samstep"
 )
 
 func main() {
-	lambda.Run(samstep.Solver)
+	s3.Run(samstep.Solver)
 }

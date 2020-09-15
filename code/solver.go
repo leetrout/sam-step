@@ -28,12 +28,12 @@ type S3Object struct {
 }
 
 // Solver solves the N queens problem.
-func Solver(in S3Object, opt solve.Options) (solve.Solver, error) {
+func Solver(n int, opt solve.Options) (solve.Solver, error) {
 	// Download the file from s3
-	n, err := fetchS3(in)
-	if err != nil {
-		return nil, err
-	}
+	// n, err := fetchS3(in)
+	// if err != nil {
+	// 	return nil, err
+	// }
 
 	// Random restriction makes it easier to find lots of layouts.
 	opt.Diagram.Restrictor = restrict.Random()

@@ -35,6 +35,7 @@ Resources:
       Environment:
         Variables:
           S3_OUTPUT_BUCKET: !Ref InputBucket
+          S3_OUTPUT_KEY: foo
       Policies:
         - S3CrudPolicy:
             BucketName: !Ref InputBucket
@@ -45,9 +46,15 @@ Resources:
       CodeUri: functions/nqueens/
       Handler: nqueens
       Runtime: go1.x
+      Environment:
+        Variables:
+          HOP_RUNNER_INPUT_PATH: !Ref InputBucket
+          HOP_RUNNER_OUTPUT_PATH: !Ref OutputBucket
       Policies:
-        - S3CrudPolicy:
+        - S3ReadPolicy:
             BucketName: !Ref InputBucket
+        - S3WritePolicy:
+            BucketName: !Ref OutputBucket
   
   InputBucket:
     Type: AWS::S3::Bucket

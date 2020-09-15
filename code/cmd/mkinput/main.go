@@ -5,8 +5,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
-	"strings"
-	"time"
 
 	"samstep"
 
@@ -21,8 +19,9 @@ func mkinput() (samstep.S3Object, error) {
 	i := 4
 	jsOut, _ := json.Marshal(i)
 	s3bucket := os.Getenv("S3_OUTPUT_BUCKET")
-	s3key := strings.Replace(time.Now().Format(time.RFC3339), ":", "", -1)
-	if s3bucket != "" {
+	//s3key := strings.Replace(time.Now().Format(time.RFC3339), ":", "", -1)
+	s3key := os.Getenv("S3_OUTPUT_KEY")
+	if s3bucket != "" && s3key != "" {
 		sess := session.Must(session.NewSession())
 		uploader := s3manager.NewUploader(sess)
 
